@@ -12,7 +12,7 @@ export async function authRoutes(app: FastifyInstance) {
     const { code } = bodySchema.parse(request.body)
 
     const accessTokenResponse = await axios.post(
-      'https://github.com/login/oauth/acess_token',
+      'https://github.com/login/oauth/access_token',
       null,
       {
         params: {
@@ -38,7 +38,7 @@ export async function authRoutes(app: FastifyInstance) {
       id: z.number(),
       login: z.string(),
       name: z.string(),
-      avatar_Url: z.string().url(),
+      avatar_url: z.string().url(),
     })
     const userInfo = userSchema.parse(userResponse.data)
 
@@ -54,7 +54,7 @@ export async function authRoutes(app: FastifyInstance) {
           githubId: userInfo.id,
           login: userInfo.login,
           name: userInfo.name,
-          avatarUrl: userInfo.avatar_Url,
+          avatarUrl: userInfo.avatar_url,
         },
       })
     }
